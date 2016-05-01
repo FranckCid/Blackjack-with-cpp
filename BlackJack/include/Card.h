@@ -7,9 +7,9 @@ class Card
 {
     public:
         static const int CARD_WIDTH, CARD_HEIGHT;
-        SDL_Surface sCard;
-        SDL_Rect pCard;
-        Card();
+        SDL_Rect pCard, mask;
+        Card(int c);
+        bool Intersects(int x, int y);
     protected:
     private:
 };

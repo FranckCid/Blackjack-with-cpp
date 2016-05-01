@@ -5,19 +5,21 @@
 #endif
 
 #include <iostream>
-
-#include "Card.h"
+#include <vector>
+#include <time.h>
 
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
+
+#include "Card.h"
 
 //Engine variables
 SDL_Surface *screen=NULL;
 SDL_Event event;
 
 //Game variables
-SDL_Surface *actualCard=NULL;
-SDL_Rect cardPosition;
+SDL_Surface *sCard;
+std::vector<Card> cards;
 
 //Engine methods
 void Load();
@@ -53,25 +55,45 @@ void Load(){
     SDL_Init(SDL_INIT_EVERYTHING);
     IMG_Init(IMG_INIT_PNG);
 
+    srand(static_cast<unsigned int>((time(0))));
+
     screen = SDL_SetVideoMode(600,600,32,SDL_HWSURFACE);
 
-    cardPosition = {0, 0, Card::CARD_WIDTH, Card::CARD_HEIGHT};
+    sCard = IMG_Load("cardz.png");
 
-    if(actualCard = IMG_Load("cardz.png")){
-
-    }else{
-        std::cout << "ASD";
+    for(int i=0; i<13; i++){
+        cards.push_back(Card(i));
     }
 
 }
 
+bool clicking=false;
 void Logic(){
+
+    if(event.type == SDL_MOUSEBUTTONDOWN){
+        clicking = true;
+    }else if(event.type == SDL_MOUSEBUTTONUP){
+        clicking = false;
+    }
+
+    for(int i=0; i<cards.size(); i++){
+        if(clicking){
+            if(cards[i].Intersects(event.motion.x, event.motion.y)){
+                cards[i].pCard.x += event.motion.xrel;
+                cards[i].pCard.y += event.motion.yrel;
+            }
+        }
+    }
 
 }
 
 void DrawScreen(){
 
-    SDL_BlitSurface(actualCard, &cardPosition, screen, &cardPosition);
+    SDL_FillRect(screen, NULL, 0);
+
+    for(int i=0; i<cards.size(); i++){
+        SDL_BlitSurface(sCard, &cards[i].mask, screen, &cards[i].pCard);
+    }
 
     SDL_Flip(screen);
 

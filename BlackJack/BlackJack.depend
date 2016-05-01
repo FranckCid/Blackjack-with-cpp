@@ -1,8 +1,18 @@
 # depslib dependency file v1.0
-1462068677 source:/home/franck/Documentos/Git/Blackjack-with-cpp/BlackJack/main.cpp
+1462072196 source:/home/franck/Documentos/Git/Blackjack-with-cpp/BlackJack/main.cpp
 	<cstdlib>
 	<stdlib.h>
 	<iostream>
+	<vector>
+	<time.h>
 	<SDL/SDL.h>
 	<SDL/SDL_image.h>
+	"Card.h"
+
+1462071232 /home/franck/Documentos/Git/Blackjack-with-cpp/BlackJack/include/Card.h
+	<SDL/SDL.h>
+
+1462071324 source:/home/franck/Documentos/Git/Blackjack-with-cpp/BlackJack/src/Card.cpp
+	"Card.h"
+	<SDL/SDL.h>
 
