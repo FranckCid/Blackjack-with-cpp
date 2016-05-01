@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1462068677 source:/home/franck/Documentos/Git/Blackjack-with-cpp/BlackJack/main.cpp
+	<cstdlib>
+	<stdlib.h>
+	<iostream>
+	<SDL/SDL.h>
+	<SDL/SDL_image.h>
+
